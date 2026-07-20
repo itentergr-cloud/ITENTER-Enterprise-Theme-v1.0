@@ -420,3 +420,431 @@ Eklenecek:
 - Renk ayarları
 
 Bundan sonra ITENTER sitesi tamamen WordPress panelinden yönetilebilir olacak.
+
+Harika. Devam ediyoruz.
+
+# Sprint 2.2 — Dynamic Projects & Portfolio CMS
+
+Bu aşamada Portfolio bölümü artık statik kartlardan çıkıp tamamen WordPress yönetilebilir proje sistemi olacak.
+
+Hedef:
+
+✅ Admin panelinden proje ekleme  
+✅ Proje görseli yükleme  
+✅ Proje kategorileri  
+✅ Teknoloji etiketleri  
+✅ Case Study sayfası  
+✅ Dinamik portfolio listeleme  
+
+---
+
+# 1) Project Taxonomy Oluşturma
+
+Dosya:
+
+
+inc/post-types.php
+
+
+`it_project` kayıtından sonra ekle:
+
+php
+/**
+ * Project Categories
+ */
+
+function itenter_project_taxonomy(){
+
+
+
+register_taxonomy(
+
+'project_category',
+
+'it_project',
+
+[
+
+'label'=>
+'Project Categories',
+
+
+'hierarchical'=>true,
+
+
+'rewrite'=>[
+
+'slug'=>'project-category'
+
+]
+
+
+]
+
+);
+
+
+
+}
+
+
+
+add_action(
+
+'init',
+
+'itenter_project_taxonomy'
+
+);
+
+
+---
+
+WordPress panelinde:
+
+
+Projects
+
+├── Add New Project
+
+└── Project Categories
+
+
+oluşacak.
+
+---
+
+# 2) Project Card Component
+
+Yeni dosya:
+
+
+template-parts/project-card.php
+
+
+Kod:
+
+php
+<article class="portfolio-card">
+
+
+<div class="portfolio-image">
+
+
+<?php
+
+
+if(has_post_thumbnail()){
+
+
+the_post_thumbnail(
+'large'
+);
+
+
+}
+
+
+?>
+
+
+</div>
+
+
+
+
+<div class="portfolio-content">
+
+
+<?php
+
+
+$terms = get_the_terms(
+
+get_the_ID(),
+
+'project_category'
+
+);
+
+
+
+if($terms && !is_wp_error($terms)){
+
+
+echo '<span>';
+
+echo esc_html(
+
+$terms[0]->name
+
+);
+
+
+echo '</span>';
+
+}
+
+
+?>
+
+
+
+<h3>
+
+<?php
+
+the_title();
+
+?>
+
+</h3>
+
+
+
+<p>
+
+<?php
+
+echo wp_trim_words(
+
+get_the_content(),
+
+18
+
+);
+
+?>
+
+</p>
+
+
+
+<a href="<?php the_permalink(); ?>">
+
+View Case Study →
+
+</a>
+
+
+</div>
+
+
+</article>
+
+
+---
+
+# 3) Portfolio Bölümünü Dinamik Yapma
+
+Dosya:
+
+
+template-parts/portfolio.php
+
+
+Kartların olduğu alanı değiştir:
+
+php
+<div class="portfolio-grid">
+
+
+<?php
+
+
+$projects = new WP_Query([
+
+'post_type'=>
+'it_project',
+
+'posts_per_page'=>6
+
+]);
+
+
+
+if($projects->have_posts()){
+
+
+while($projects->have_posts()){
+
+
+$projects->the_post();
+
+
+
+get_template_part(
+
+'template-parts/project-card'
+
+);
+
+
+
+}
+
+
+}
+
+
+
+wp_reset_postdata();
+
+
+?>
+
+
+</div>
+
+
+---
+
+# 4) Single Project Sayfası
+
+Yeni dosya:
+
+
+single-it_project.php
+
+
+Kod:
+
+php
+<?php
+
+get_header();
+
+?>
+
+
+<main class="project-single">
+
+
+<div class="container">
+
+
+<?php
+
+
+while(have_posts()):
+
+
+the_post();
+
+
+?>
+
+
+<h1>
+
+<?php the_title(); ?>
+
+</h1>
+
+
+
+<div class="project-image">
+
+
+<?php
+
+the_post_thumbnail(
+'large'
+);
+
+?>
+
+
+</div>
+
+
+
+<div class="project-content">
+
+
+<?php
+
+the_content();
+
+?>
+
+
+</div>
+
+
+
+<?php
+
+
+endwhile;
+
+
+?>
+
+
+</div>
+
+
+</main>
+
+
+<?php
+
+get_footer();
+
+?>
+
+
+---
+
+# 5) Project SEO Hazırlığı
+
+Her proje için:
+
+- Başlık
+- Açıklama
+- Görsel
+- Kategori
+- İçerik
+
+Google tarafından ayrı sayfa olarak indexlenebilir hale gelir.
+
+Örnek:
+
+
+itenter.gr/projects/cloud-platform/
+
+itenter.gr/projects/business-software/
+
+
+---
+
+# GitHub Commit
+
+
+Sprint 2.2 - Dynamic Portfolio CMS
+
+- Added project taxonomy
+- Added dynamic project cards
+- Added project single template
+- Added portfolio CMS structure
+
+
+---
+
+# Sonraki Sprint
+
+## Sprint 2.3 — SEO Engine + Schema.org
+
+Eklenecek:
+
+✅ Meta title sistemi  
+✅ Meta description  
+✅ Organization Schema  
+✅ Local Business Schema  
+✅ Software Company Schema  
+✅ Open Graph  
+✅ Twitter Cards  
+✅ Breadcrumb altyapısı  
+
+Bu aşamadan sonra ITENTER teması sadece güzel değil, Google için optimize edilmiş profesyonel bir ürün haline gelecek.
