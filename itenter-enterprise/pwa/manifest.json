@@ -1,1 +1,297 @@
+Harika. Bu noktaya kadar ortaya koyduğumuz plan, kurumsal bir WordPress teması için oldukça kapsamlı bir yol haritası oluşturdu.
 
+## Sprint 6.2 — ITENTER Mobile Experience
+
+Bu sprintte hedefimiz, mevcut WordPress temasını mobil cihazlarla tam entegre çalışan bir platforma dönüştürmek.
+
+### Hedefler
+
+- ✅ Gelişmiş PWA
+- ✅ Push Notification
+- ✅ Mobil Client Portal
+- ✅ REST API v2
+- ✅ Android ve iOS entegrasyonu
+- ✅ Offline çalışma desteği
+
+---
+
+# 1. PWA v2
+
+Klasör
+
+
+/pwa/
+
+manifest.json
+
+service-worker.js
+
+offline.html
+
+icons/
+
+
+Yeni özellikler
+
+
+Offline Cache
+
+Background Sync
+
+App Install Banner
+
+Offline Contact Form
+
+Auto Update
+
+
+---
+
+# 2. Push Notification Altyapısı
+
+WordPress Admin
+
+
+ITENTER
+
+↓
+
+Notifications
+
+↓
+
+Create Campaign
+
+
+Örnek
+
+
+New Product
+
+↓
+
+Send Notification
+
+↓
+
+Mobile Devices
+
+↓
+
+Click Website
+
+
+Bu yapı daha sonra Firebase Cloud Messaging (FCM) gibi servislerle entegre edilebilir.
+
+---
+
+# 3. REST API v2
+
+Yeni endpoint örnekleri:
+
+
+GET
+
+/wp-json/itenter/v2/services
+
+GET
+
+/wp-json/itenter/v2/projects
+
+GET
+
+/wp-json/itenter/v2/products
+
+POST
+
+/wp-json/itenter/v2/contact
+
+POST
+
+/wp-json/itenter/v2/quote
+
+
+Bunlar mobil uygulama ve gelecekteki istemciler için temel veri katmanını oluşturur.
+
+---
+
+# 4. Mobil Dashboard
+
+Müşteri giriş yaptıktan sonra
+
+
+Dashboard
+
+↓
+
+Projects
+
+↓
+
+Invoices
+
+↓
+
+Support
+
+↓
+
+Files
+
+↓
+
+Messages
+
+
+Her ekran mobil öncelikli tasarlanır.
+
+---
+
+# 5. Offline Destek
+
+PWA sayesinde
+
+
+Logo
+
+Menü
+
+Hizmetler
+
+İletişim Bilgileri
+
+Son Görüntülenen Sayfalar
+
+
+internet bağlantısı olmasa bile görüntülenebilir.
+
+---
+
+# 6. Bildirim Merkezi
+
+Portal içinde
+
+
+Notifications
+
+──────────────
+
+Project Updated
+
+Invoice Ready
+
+Support Reply
+
+Maintenance Notice
+
+New Product
+
+
+İleride gerçek zamanlı bildirimlerle genişletilebilir.
+
+---
+
+# 7. API Authentication
+
+Mobil uygulamalar için önerilen yapı
+
+
+User Login
+
+↓
+
+JWT Authentication
+
+↓
+
+Access Token
+
+↓
+
+REST API
+
+↓
+
+Protected Resources
+
+
+Böylece sadece yetkili kullanıcılar portal verilerine erişebilir.
+
+---
+
+# 8. Performans Hedefleri
+
+Mobil için hedefler
+
+
+Lighthouse
+
+95+
+
+Performance
+
+90+
+
+Accessibility
+
+100
+
+SEO
+
+100
+
+Best Practices
+
+100
+
+
+Bu değerler içerik, sunucu ve görsel optimizasyonuna bağlı olarak değişebilir; bunlar ulaşılması hedeflenen değerlerdir.
+
+---
+
+# 9. Gelecek Mobil Uygulama Mimarisi
+
+
+Android
+
+        │
+
+        ├──── REST API
+
+        │
+
+Website ───── Database
+
+        │
+
+        ├──── Client Portal
+
+        │
+
+iOS
+
+
+Tek API katmanı hem web hem mobil istemcileri besler.
+
+---
+
+# 10. Sprint Sonucu
+
+Sprint 6.2 sonunda platform şu yeteneklere sahip olacak:
+
+- Responsive WordPress Enterprise Theme
+- Gelişmiş PWA
+- REST API
+- Client Portal
+- Çoklu dil desteği
+- SEO altyapısı
+- Lead yönetimi
+- Blog sistemi
+- Mobil entegrasyon altyapısı
+
+## Bundan Sonra Ne Yapmalıyız?
+
+Artık yol haritası yeterince olgunlaştı. Sürekli yeni sprintler eklemek yerine, gerçek geliştirme aşamasına geçmek en verimli adım olacaktır.
+
+Önerdiğim geliştirme sırası:
+ 
