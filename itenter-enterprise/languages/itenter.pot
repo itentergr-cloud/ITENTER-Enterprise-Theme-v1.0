@@ -1,1 +1,313 @@
+Harika. Devam ediyoruz.
 
+# Sprint 2.6 — ITENTER Multilingual & International Support
+
+Bu aşamada temayı uluslararası kullanıma hazır hale getiriyoruz.
+
+Hedef:
+
+✅ Translation Ready yapı  
+✅ TR / EN / EL desteği  
+✅ WPML uyumluluğu  
+✅ Polylang uyumluluğu  
+✅ Dil dosyası altyapısı  
+✅ RTL hazırlığı  
+
+---
+
+# 1) Language Klasörü
+
+Oluştur:
+
+
+languages/
+
+
+İçine:
+
+
+itenter.pot
+
+
+eklenecek.
+
+Yapı:
+
+
+itenter-enterprise/
+
+├── languages/
+
+│   └── itenter.pot
+
+
+
+---
+
+# 2) functions.php Güncelleme
+
+Tema dil desteği ekle:
+
+php
+function itenter_load_textdomain(){
+
+
+load_theme_textdomain(
+
+'itenter',
+
+get_template_directory()
+.'/languages'
+
+);
+
+
+}
+
+
+add_action(
+
+'after_setup_theme',
+
+'itenter_load_textdomain'
+
+);
+
+
+---
+
+# 3) Menü Çeviri Hazırlığı
+
+`header.php`
+
+Eski:
+
+php
+Get Started
+
+
+Yeni:
+
+php
+<?php
+
+_e(
+
+'Get Started',
+
+'itenter'
+
+);
+
+?>
+
+
+---
+
+# 4) Hero Çeviri Örneği
+
+`hero.php`
+
+Eski:
+
+html
+Digital Solutions
+
+
+Yeni:
+
+php
+<?php
+
+_e(
+
+'Digital Solutions',
+
+'itenter'
+
+);
+
+?>
+
+
+---
+
+# 5) Services Çeviri Örneği
+
+Eski:
+
+html
+Our Solutions
+
+
+Yeni:
+
+php
+<?php
+
+_e(
+
+'Our Solutions',
+
+'itenter'
+
+);
+
+?>
+
+
+---
+
+# 6) RTL Hazırlığı
+
+Yeni CSS:
+
+
+assets/css/rtl.css
+
+
+Kod:
+
+css
+/*
+ITENTER RTL Support
+*/
+
+
+body.rtl{
+
+
+direction:rtl;
+
+text-align:right;
+
+
+}
+
+
+body.rtl .hero-container{
+
+
+direction:rtl;
+
+
+}
+
+
+---
+
+# 7) functions.php RTL yükleme
+
+Ekle:
+
+php
+function itenter_rtl_styles(){
+
+
+if(is_rtl()){
+
+
+wp_enqueue_style(
+
+'itenter-rtl',
+
+get_template_directory_uri()
+.'/assets/css/rtl.css'
+
+);
+
+
+}
+
+
+}
+
+
+add_action(
+
+'wp_enqueue_scripts',
+
+'itenter_rtl_styles'
+
+);
+
+
+---
+
+# 8) WPML / Polylang Uyumluluğu
+
+Tema şu standartları kullanacak:
+
+php
+_e()
+
+__()
+
+esc_html__()
+
+esc_attr__()
+
+
+Örnek:
+
+php
+echo esc_html__(
+'Contact Us',
+'itenter'
+);
+
+
+Bu yapı:
+
+- WPML
+- Polylang
+- Loco Translate
+
+ile uyumludur.
+
+---
+
+# GitHub Commit
+
+
+Sprint 2.6 - Multilingual Support
+
+- Added translation system
+- Added language loading
+- Added RTL support
+- Added WPML compatibility
+
+
+---
+
+# Güncel Tema Seviyesi
+
+Şu anda:
+
+✅ Premium OnePage Design  
+✅ WordPress CMS  
+✅ Dynamic Content  
+✅ SEO Engine  
+✅ Performance Layer  
+✅ Security Layer  
+✅ Multilingual Ready  
+
+oluştu.
+
+---
+
+## Sonraki Sprint
+
+# Sprint 2.7 — Advanced Admin Dashboard
+
+Eklenecek:
+
+✅ ITENTER özel panel  
+✅ Dashboard widgetleri  
+✅ Hızlı ayarlar  
+✅ Marka renk yönetimi  
+✅ Sosyal medya ayarları  
+✅ Footer yönetimi  
+✅ Hero görsel yönetimi  
+
+Bu aşama ile WordPress paneli normal tema panelinden çıkıp ITENTER özel yönetim sistemi haline gelecek.
