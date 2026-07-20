@@ -1,1 +1,450 @@
+Harika. Devam ediyoruz.
 
+# Sprint 3.2 — ITENTER Animation & Interactive Experience
+
+Bu sprintte ITENTER temasına premium teknoloji şirketi hissi veren hareket ve etkileşim katmanını ekliyoruz.
+
+Hedef:
+
+✅ Scroll animasyonları  
+✅ Smooth scrolling  
+✅ Sayaç animasyonları  
+✅ Kart giriş efektleri  
+✅ Hero hareket efekti  
+✅ Modern SaaS kullanıcı deneyimi  
+
+---
+
+# 1) Animation CSS Dosyası
+
+Oluştur:
+
+
+assets/css/animations.css
+
+
+Kod:
+
+css
+/*
+=========================
+ITENTER ANIMATIONS
+=========================
+*/
+
+
+.fade-up{
+
+
+opacity:0;
+
+
+transform:
+
+translateY(40px);
+
+
+transition:
+
+all .8s ease;
+
+
+}
+
+
+
+.fade-up.show{
+
+
+opacity:1;
+
+
+transform:
+
+translateY(0);
+
+
+}
+
+
+
+
+.fade-left{
+
+
+opacity:0;
+
+
+transform:
+
+translateX(-50px);
+
+
+transition:.8s;
+
+
+}
+
+
+
+.fade-left.show{
+
+
+opacity:1;
+
+
+transform:
+
+translateX(0);
+
+
+}
+
+
+
+
+
+.fade-right{
+
+
+opacity:0;
+
+
+transform:
+
+translateX(50px);
+
+
+transition:.8s;
+
+
+}
+
+
+
+.fade-right.show{
+
+
+opacity:1;
+
+
+transform:
+
+translateX(0);
+
+
+}
+
+
+---
+
+# 2) JavaScript Animation Engine
+
+Dosya:
+
+
+assets/js/animations.js
+
+
+Kod:
+
+javascript
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+const elements =
+document.querySelectorAll(
+'.fade-up,.fade-left,.fade-right'
+);
+
+
+
+const observer =
+new IntersectionObserver(
+
+(entries)=>{
+
+
+entries.forEach(
+
+(entry)=>{
+
+
+if(entry.isIntersecting){
+
+
+entry.target.classList.add(
+'show'
+);
+
+
+}
+
+
+}
+
+);
+
+
+},
+
+{
+
+threshold:.15
+
+}
+
+);
+
+
+
+elements.forEach(
+
+(el)=>{
+
+observer.observe(el);
+
+}
+
+);
+
+
+
+});
+
+
+---
+
+# 3) JS Dosyasını Yükleme
+
+`inc/enqueue.php`
+
+Ekle:
+
+php
+wp_enqueue_script(
+
+'itenter-animation',
+
+get_template_directory_uri()
+
+.'/assets/js/animations.js',
+
+array(),
+
+'1.0',
+
+true
+
+);
+
+
+---
+
+# 4) Smooth Scroll
+
+`animations.js`
+
+Ekle:
+
+javascript
+document.documentElement.style.scrollBehavior =
+"smooth";
+
+
+---
+
+# 5) Counter Animation
+
+Yeni dosya:
+
+
+assets/js/counter.js
+
+
+Kod:
+
+javascript
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+const counters =
+document.querySelectorAll(
+'[data-count]'
+);
+
+
+
+counters.forEach(
+
+counter=>{
+
+
+let target =
+parseInt(
+counter.dataset.count
+);
+
+
+let current=0;
+
+
+
+let interval =
+setInterval(
+
+()=>{
+
+
+current += Math.ceil(
+target / 50
+);
+
+
+
+if(current>=target){
+
+
+current=target;
+
+
+clearInterval(interval);
+
+
+}
+
+
+
+counter.innerHTML=current;
+
+
+},
+
+40
+
+);
+
+
+
+});
+
+
+});
+
+
+---
+
+# 6) Hero Floating Effect
+
+`main.css`
+
+Ekle:
+
+css
+.software-dashboard{
+
+
+animation:
+
+floating 6s ease-in-out infinite;
+
+
+}
+
+
+
+@keyframes floating{
+
+
+0%,100%{
+
+
+transform:translateY(0);
+
+
+}
+
+
+
+50%{
+
+
+transform:
+
+translateY(-20px);
+
+
+}
+
+
+}
+
+
+---
+
+# 7) HTML Sınıf Kullanımı
+
+Örnek:
+
+Hero:
+
+html
+<div class="hero-content fade-left">
+
+
+Service kart:
+
+html
+<div class="service-card fade-up">
+
+
+Portfolio:
+
+html
+<div class="portfolio-card fade-up">
+
+
+---
+
+# 8) Performance Notu
+
+Animasyonlarda:
+
+✅ CSS transform kullanıldı  
+✅ GPU hızlandırma destekli  
+✅ Ağır kütüphane kullanılmadı  
+✅ Core Web Vitals uyumlu  
+
+---
+
+# GitHub Commit
+
+
+Sprint 3.2 - Animation Experience
+
+- Added scroll animations
+- Added counter engine
+- Added smooth scrolling
+- Added SaaS style interactions
+
+
+---
+
+# Sonraki Sprint
+
+## Sprint 3.3 — Final Responsive & Mobile Experience
+
+Eklenecek:
+
+✅ Mobil menü geliştirme  
+✅ Tablet optimizasyonu  
+✅ Touch deneyimi  
+✅ Mobil hero düzeni  
+✅ Responsive typography  
+✅ Mobil hız iyileştirmeleri  
+
+Bu aşama sonrası tema tüm cihazlarda premium görünecek.
