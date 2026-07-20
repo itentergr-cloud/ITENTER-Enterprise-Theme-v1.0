@@ -449,3 +449,325 @@ menu.classList.toggle(
 
 
 });
+
+
+Harika. Devam ediyoruz.
+
+# Sprint 3.4 — ITENTER Accessibility & Professional Standards
+
+Bu sprintte temayı kurumsal standartlara daha uygun hale getiriyoruz.
+
+Hedef:
+
+✅ WCAG erişilebilirlik altyapısı  
+✅ Klavye navigasyonu  
+✅ ARIA etiketleri  
+✅ Görsel alt metin kontrolü  
+✅ Kontrast iyileştirmeleri  
+✅ SEO + kullanıcı deneyimi geliştirmeleri  
+
+---
+
+# 1) Skip Link (Klavye Kullanımı)
+
+`header.php`
+
+`<body>` hemen sonrasına ekle:
+
+php
+<a 
+class="skip-link"
+href="#main-content">
+
+Skip to content
+
+</a>
+
+
+---
+
+# 2) Ana İçerik ID
+
+`front-page.php`
+
+Değiştir:
+
+Eski:
+
+html
+<main>
+
+
+Yeni:
+
+html
+<main id="main-content">
+
+
+---
+
+# 3) Skip Link CSS
+
+`assets/css/components.css`
+
+Ekle:
+
+css
+.skip-link{
+
+
+position:absolute;
+
+
+left:-999px;
+
+
+top:20px;
+
+
+background:#2563EB;
+
+
+color:white;
+
+
+padding:15px 25px;
+
+
+border-radius:10px;
+
+
+z-index:9999;
+
+
+}
+
+
+
+.skip-link:focus{
+
+
+left:20px;
+
+
+}
+
+
+---
+
+# 4) ARIA Menü Desteği
+
+`header.php`
+
+Mobil buton:
+
+Eski:
+
+html
+<button class="mobile-menu-toggle">
+
+
+Yeni:
+
+html
+<button 
+class="mobile-menu-toggle"
+aria-label="Open navigation menu"
+aria-expanded="false">
+
+
+---
+
+# 5) JavaScript ARIA Güncellemesi
+
+`mobile-menu.js`
+
+Değiştir:
+
+javascript
+button.addEventListener(
+'click',
+()=>{
+
+
+const expanded =
+button.getAttribute(
+'aria-expanded'
+);
+
+
+
+button.setAttribute(
+
+'aria-expanded',
+
+expanded === "true"
+?
+"false"
+:
+"true"
+
+);
+
+
+
+menu.classList.toggle(
+'active'
+);
+
+
+
+});
+
+
+---
+
+# 6) Görsel Alt Text Sistemi
+
+Tema içinde:
+
+Yanlış:
+
+php
+<img src="image.jpg">
+
+
+Doğru:
+
+php
+<img 
+src="image.jpg"
+alt="<?php echo esc_attr(get_the_title()); ?>">
+
+
+---
+
+# 7) WordPress Thumbnail Güvenliği
+
+Kartlarda:
+
+Eski:
+
+php
+the_post_thumbnail();
+
+
+Yeni:
+
+php
+the_post_thumbnail(
+
+'large',
+
+[
+
+'alt'=>the_title_attribute(
+
+[
+'echo'=>false
+
+]
+
+)
+
+]
+
+);
+
+
+---
+
+# 8) Kontrast Düzenlemeleri
+
+`variables.css`
+
+Güncelle:
+
+css
+:root{
+
+
+--it-text:#0F172A;
+
+--it-muted:#475569;
+
+
+}
+
+
+Daha yüksek okunabilirlik sağlar.
+
+---
+
+# 9) Form Accessibility
+
+Contact form:
+
+Ek:
+
+html
+<label>
+
+Your Email
+
+</label>
+
+
+<input
+type="email"
+aria-label="Email Address">
+
+
+---
+
+# 10) SEO Accessibility Kontrolü
+
+Kontrol listesi:
+
+
+✓ Tek H1 kullanımı
+
+✓ Doğru heading sıralaması
+
+✓ Alt text
+
+✓ Link açıklamaları
+
+✓ Klavye erişimi
+
+✓ Renk kontrastı
+
+✓ Form label desteği
+
+
+---
+
+# GitHub Commit
+
+
+Sprint 3.4 - Accessibility Standards
+
+- Added skip navigation
+- Added ARIA support
+- Improved keyboard navigation
+- Improved contrast
+- Added accessibility improvements
+
+
+---
+
+# Sonraki Sprint
+
+## Sprint 3.5 — Final QA & Launch Preparation
+
+Yapılacaklar:
+
+✅ WordPress tema testleri  
+✅ PHP hata kontrolü  
+✅ Mobil test  
+✅ SEO kontrolü  
+✅ Speed test hazırlığı  
+✅ Production ayarları  
+✅ Final v1.0 release checklist  
+
+Bu sprintten sonra ITENTER Enterprise Theme yayına hazır hale gelecek.
