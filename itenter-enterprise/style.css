@@ -1,1 +1,469 @@
+Devam ediyoruz. Şimdi Sprint 1.1 — WordPress Theme Core kısmını oluşturuyoruz.
 
+Bu aşamanın amacı:
+- WordPress'in temayı tanıması
+- Tema aktif edilebilir hale gelmesi
+- ITENTER tasarım sisteminin temelinin kurulması
+
+---
+
+# 1) `style.css`
+
+Konum:
+
+
+itenter-enterprise/style.css
+
+
+Kod:
+
+css
+/*
+Theme Name: ITENTER Enterprise
+Theme URI: https://itenter.gr
+Author: ITENTER Information Technology
+Author URI: https://itenter.gr
+Description: Premium OnePage WordPress Theme for ITENTER Information Technology.
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+Text Domain: itenter
+*/
+
+
+/*
+================================
+ITENTER DESIGN SYSTEM
+================================
+*/
+
+
+:root {
+
+    --primary-color: #2563EB;
+    --secondary-color: #7C3AED;
+    --accent-color: #06B6D4;
+
+    --dark-color: #081120;
+    --light-color: #ffffff;
+
+    --text-color: #334155;
+    --gray-color: #64748B;
+
+    --gradient-primary:
+    linear-gradient(
+        90deg,
+        #2563EB,
+        #7C3AED
+    );
+
+    --container-width: 1200px;
+
+}
+
+
+*,
+*::before,
+*::after {
+
+    box-sizing:border-box;
+
+}
+
+
+html {
+
+    scroll-behavior:smooth;
+
+}
+
+
+body {
+
+    margin:0;
+
+    font-family:
+    "Inter",
+    Arial,
+    sans-serif;
+
+    color:var(--text-color);
+
+    background:#ffffff;
+
+}
+
+
+.container {
+
+    width:min(
+        var(--container-width),
+        92%
+    );
+
+    margin:auto;
+
+}
+
+
+img {
+
+    max-width:100%;
+
+    height:auto;
+
+}
+
+
+a {
+
+    text-decoration:none;
+
+}
+
+
+---
+
+# 2) `functions.php`
+
+Konum:
+
+
+itenter-enterprise/functions.php
+
+
+Kod:
+
+php
+<?php
+
+/**
+ * ITENTER Enterprise Theme
+ */
+
+
+if(!defined('ABSPATH')){
+
+    exit;
+
+}
+
+
+/**
+ * Theme Setup
+ */
+
+function itenter_theme_setup(){
+
+
+    add_theme_support(
+        'title-tag'
+    );
+
+
+    add_theme_support(
+        'post-thumbnails'
+    );
+
+
+    add_theme_support(
+        'custom-logo',
+        [
+            'height'=>80,
+            'width'=>250,
+            'flex-height'=>true,
+            'flex-width'=>true
+        ]
+    );
+
+
+    add_theme_support(
+        'html5',
+        [
+            'search-form',
+            'gallery',
+            'caption',
+            'style',
+            'script'
+        ]
+    );
+
+
+    register_nav_menus([
+
+        'primary_menu'=>
+        __('Primary Menu','itenter')
+
+    ]);
+
+}
+
+
+add_action(
+    'after_setup_theme',
+    'itenter_theme_setup'
+);
+
+
+
+/**
+ * Load Assets
+ */
+
+function itenter_assets(){
+
+
+    wp_enqueue_style(
+
+        'itenter-main',
+
+        get_template_directory_uri()
+        .'/assets/css/main.css',
+
+        [],
+
+        '1.0.0'
+
+    );
+
+
+
+    wp_enqueue_script(
+
+        'itenter-main-js',
+
+        get_template_directory_uri()
+        .'/assets/js/main.js',
+
+        [],
+
+        '1.0.0',
+
+        true
+
+    );
+
+
+}
+
+
+add_action(
+    'wp_enqueue_scripts',
+    'itenter_assets'
+);
+
+
+---
+
+# 3) `theme.json`
+
+Konum:
+
+
+itenter-enterprise/theme.json
+
+
+Kod:
+
+json
+{
+    "$schema":
+    "https://schemas.wp.org/trunk/theme.json",
+
+    "version":2,
+
+    "settings": {
+
+        "color": {
+
+            "palette":[
+
+                {
+                    "slug":"primary",
+                    "color":"#2563EB",
+                    "name":"ITENTER Blue"
+                },
+
+                {
+                    "slug":"secondary",
+                    "color":"#7C3AED",
+                    "name":"ITENTER Purple"
+                },
+
+                {
+                    "slug":"dark",
+                    "color":"#081120",
+                    "name":"Dark"
+                }
+
+            ]
+
+        },
+
+
+        "typography":{
+
+            "fontFamilies":[
+
+                {
+                    "fontFamily":
+                    "Inter, Arial, sans-serif",
+
+                    "slug":"inter",
+
+                    "name":"Inter"
+                }
+
+            ]
+
+        },
+
+
+        "layout":{
+
+            "contentSize":
+            "1200px",
+
+            "wideSize":
+            "1400px"
+
+        }
+
+    },
+
+
+    "styles":{
+
+        "color":{
+
+            "background":
+            "#ffffff",
+
+            "text":
+            "#334155"
+
+        }
+
+    }
+
+}
+
+
+---
+
+# 4) `assets/css/main.css`
+
+Oluştur:
+
+
+assets/css/main.css
+
+
+İlk içerik:
+
+css
+/*
+ITENTER MAIN CSS
+*/
+
+
+.site-wrapper{
+
+    overflow:hidden;
+
+}
+
+
+.section{
+
+    padding:100px 0;
+
+}
+
+
+.btn-primary{
+
+    display:inline-block;
+
+    padding:16px 32px;
+
+    border-radius:50px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #2563EB,
+        #7C3AED
+    );
+
+    color:#fff;
+
+    font-weight:700;
+
+}
+
+
+---
+
+# 5) `assets/js/main.js`
+
+javascript
+/**
+ * ITENTER Main JS
+ */
+
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+console.log(
+"ITENTER Enterprise Theme Loaded"
+);
+
+
+});
+
+
+---
+
+## Bu aşama sonunda:
+
+✅ WordPress teması tanınır  
+✅ Tema aktif edilebilir  
+✅ Logo desteği hazır  
+✅ Menü sistemi hazır  
+✅ CSS/JS yükleme sistemi hazır  
+✅ ITENTER renk sistemi hazır  
+✅ Gutenberg uyumluluğu başladı  
+
+---
+
+### GitHub Commit
+
+Şu mesajla gönder:
+
+
+Sprint 1.1 - WordPress Core Foundation
+
+- Added theme stylesheet
+- Added functions.php
+- Added theme.json
+- Added asset loading system
+- Added ITENTER design system
+
+
+Sonraki aşama:
+
+Sprint 1.2 — Header & Navigation
+
+O bölümde:
+- ITENTER logo alanı
+- Sticky header
+- Transparent menu
+- Mobil hamburger
+- Premium animasyon
+
+oluşturacağız.
