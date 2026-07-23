@@ -1,1 +1,84 @@
+json
+{
+    "$schema":
+    "https://schemas.wp.org/trunk/theme.json",
 
+    "version":2,
+
+    "settings": {
+
+        "color": {
+
+            "palette":[
+
+                {
+                    "slug":"primary",
+                    "color":"#2563EB",
+                    "name":"ITENTER Blue"
+                },
+
+                {
+                    "slug":"secondary",
+                    "color":"#7C3AED",
+                    "name":"ITENTER Purple"
+                },
+
+                {
+                    "slug":"dark",
+                    "color":"#081120",
+                    "name":"Dark"
+                }
+
+            ]
+
+        },
+
+
+        "typography":{
+
+            "fontFamilies":[
+
+                {
+                    "fontFamily":
+                    "Inter, Arial, sans-serif",
+                   "slug":"inter",
+
+                    "name":"Inter"
+                }
+
+            ]
+
+        },
+
+
+        "layout":{
+
+            "contentSize":
+            "1200px",
+
+            "wideSize":
+            "1400px"
+
+        }
+
+    },
+
+
+    "styles":{
+
+        "color":{
+
+            "background":
+            "#ffffff",
+
+            "text":
+            "#334155"
+
+        }
+
+    }
+
+}
+
+
+---
