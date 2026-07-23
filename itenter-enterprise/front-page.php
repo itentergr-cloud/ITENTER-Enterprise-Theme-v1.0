@@ -25,3 +25,22 @@ get_footer();
 
 
 ---
+php
+get_template_part(
+    'template-parts/about'
+);
+
+
+Sıralama:
+
+php
+hero
+
+services
+
+about
+
+contact
+
+
+---
