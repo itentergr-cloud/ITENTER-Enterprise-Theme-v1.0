@@ -1,1 +1,43 @@
+css
+/*
+ITENTER MAIN CSS
+*/
 
+
+.site-wrapper{
+
+    overflow:hidden;
+
+}
+
+
+.section{
+
+    padding:100px 0;
+
+}
+
+
+.btn-primary{
+
+    display:inline-block;
+
+    padding:16px 32px;
+
+    border-radius:50px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #2563EB,
+        #7C3AED
+    );
+
+    color:#fff;
+
+    font-weight:700;
+
+}
+
+
+---
