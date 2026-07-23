@@ -97,3 +97,37 @@ Contact
 
 
 ---
+php
+get_template_part(
+    'template-parts/statistics'
+);
+
+
+get_template_part(
+    'template-parts/testimonials'
+);
+
+
+Yeni sıra:
+
+
+Hero
+
+Services
+
+About
+
+Products
+
+Technology
+
+Portfolio
+
+Statistics
+
+Testimonials
+
+Contact
+
+
+---
