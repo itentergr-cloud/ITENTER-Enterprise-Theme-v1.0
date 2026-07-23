@@ -44,3 +44,31 @@ contact
 
 
 ---
+php
+get_template_part(
+    'template-parts/products'
+);
+
+
+get_template_part(
+    'template-parts/technology'
+);
+
+
+Yeni yapı:
+
+
+Hero
+
+Services
+
+About
+
+Products
+
+Technology
+
+Contact
+
+
+---
