@@ -72,3 +72,28 @@ Contact
 
 
 ---
+php
+get_template_part(
+    'template-parts/portfolio'
+);
+
+
+Yeni sıra:
+
+
+Hero
+
+Services
+
+About
+
+Products
+
+Technology
+
+Portfolio
+
+Contact
+
+
+---
